@@ -1,0 +1,9 @@
+{"point_id": 1, "batch_key": "CITY-HANDOFF-20261124", "lat": 39.9042, "lon": 116.4074, "timestamp": 1789002060, "terminal": "TERM-CITY-01"}
+{"point_id": 2, "batch_key": "CITY-HANDOFF-20261124", "lat": 39.90432, "lon": 116.4074, "timestamp": 1789002067, "terminal": "TERM-CITY-02"}
+{"point_id": 3, "batch_key": "CITY-HANDOFF-20261124", "lat": 39.90444, "lon": 116.4074, "timestamp": 1789002074, "terminal": "TERM-CITY-03"}
+{"point_id": 4, "batch_key": "CITY-HANDOFF-20261124", "lat": 39.9042, "lon": 116.40752, "timestamp": 1789002081, "terminal": "TERM-CITY-04"}
+{"point_id": 5, "batch_key": "CITY-HANDOFF-20261124", "lat": 39.90432, "lon": 116.40752, "timestamp": 1789002088, "terminal": "TERM-CITY-05"}
+{"point_id": 6, "batch_key": "CITY-HANDOFF-20261124", "lat": 39.90444, "lon": 116.40752, "timestamp": 1789002095, "terminal": "TERM-CITY-06"}
+{"point_id": 7, "batch_key": "CITY-HANDOFF-20261124", "lat": 39.9042, "lon": 116.40764, "timestamp": 1789002102, "terminal": "TERM-CITY-07"}
+{"point_id": 8, "batch_key": "CITY-HANDOFF-20261124", "lat": 39.90432, "lon": 116.40764, "timestamp": 1789002109, "terminal": "TERM-CITY-08"}
+{"point_id": 9, "batch_key": "CITY-HANDOFF-20261124", "lat": 39.90432, "lon": 116.4074, "timestamp": 1789002067, "terminal": "TERM-CITY-09", "is_backfill": true}

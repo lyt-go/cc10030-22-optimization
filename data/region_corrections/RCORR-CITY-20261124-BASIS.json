@@ -1,0 +1,120 @@
+{
+  "correction_id": "RCORR-CITY-20261124-BASIS",
+  "id": "RCORR-CITY-20261124-BASIS",
+  "kind": "region_correction",
+  "handoff_id": "HO-CITY-20261124-ISSUED",
+  "scope": "CITY-HANDOFF-20261124",
+  "status": "已启动_待调账",
+  "based_on_handoff_basis": true,
+  "basis_fingerprint": "a2a967882c120949",
+  "basis": {
+    "handoff_id": "HO-CITY-20261124-ISSUED",
+    "snapshot_id": "CSNAP-CITY-HANDOFF-20261124-20261124201251-6fbdb2",
+    "fingerprint": "a2a967882c120949",
+    "selections": [
+      {
+        "item_key": "heatmap:甲窗",
+        "component": "heatmap",
+        "分项": "热力聚合",
+        "window": "甲窗",
+        "selected_uid": "HV-JIA-v2-9",
+        "selected_version": 2,
+        "value": 9,
+        "point_count": 9,
+        "checked": true,
+        "usable": true,
+        "status": "已核对",
+        "selection_basis": "latest_checked",
+        "fingerprint": "4fd163088ff610b5"
+      },
+      {
+        "item_key": "region:甲窗",
+        "component": "region",
+        "分项": "区域汇总",
+        "window": "甲窗",
+        "selected_uid": "RC-CITY-HANDOFF-20261124-甲窗-1795551171962414080-bab92a",
+        "value": 8,
+        "point_count": 8,
+        "adopted_heat_uid": "HV-JIA-v1-8",
+        "adopted_point_count": 8,
+        "usable": true,
+        "adjustment_pending": true,
+        "pending_delta": 1,
+        "status": "已确认",
+        "fingerprint": "663f90101cb9ffcd"
+      },
+      {
+        "item_key": "window:乙窗",
+        "component": "window",
+        "分项": "聚合窗口",
+        "window": "乙窗",
+        "selected_uid": null,
+        "value": null,
+        "point_count": null,
+        "usable": false,
+        "status": "待续",
+        "pending": true,
+        "pending_reason": "乙窗热力重算任务处理失败（数据源读取异常）",
+        "fingerprint": "e59682609266235b"
+      }
+    ]
+  },
+  "lines": [
+    {
+      "window": "甲窗",
+      "窗口": "甲窗",
+      "from_uid": "HV-JIA-v1-8",
+      "from_points": 8,
+      "原采用点数": 8,
+      "to_uid": "HV-JIA-v2-9",
+      "to_points": 9,
+      "更正目标点数": 9,
+      "region_points_before": 8,
+      "adjust_delta": 1,
+      "待调差数": 1,
+      "basis_locked_delta": 1,
+      "status": "待调账",
+      "line_status": "待调账"
+    }
+  ],
+  "items": [
+    {
+      "window": "甲窗",
+      "窗口": "甲窗",
+      "from_uid": "HV-JIA-v1-8",
+      "from_points": 8,
+      "原采用点数": 8,
+      "to_uid": "HV-JIA-v2-9",
+      "to_points": 9,
+      "更正目标点数": 9,
+      "region_points_before": 8,
+      "adjust_delta": 1,
+      "待调差数": 1,
+      "basis_locked_delta": 1,
+      "status": "待调账",
+      "line_status": "待调账"
+    }
+  ],
+  "correction_lines": [
+    {
+      "window": "甲窗",
+      "窗口": "甲窗",
+      "from_uid": "HV-JIA-v1-8",
+      "from_points": 8,
+      "原采用点数": 8,
+      "to_uid": "HV-JIA-v2-9",
+      "to_points": 9,
+      "更正目标点数": 9,
+      "region_points_before": 8,
+      "adjust_delta": 1,
+      "待调差数": 1,
+      "basis_locked_delta": 1,
+      "status": "待调账",
+      "line_status": "待调账"
+    }
+  ],
+  "total_adjust_delta": 1,
+  "window_count_to_adjust": 1,
+  "started_at": 1795551171.9718614,
+  "started_at_iso": "2026-11-24T20:12:51"
+}

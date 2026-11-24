@@ -56,6 +56,8 @@ class RegionDimService(BaseModuleService):
         }
 
         output_file = self._data_dir("region_aggregates") / f"{batch_key}_region.jsonl"
+        # 区域汇总按 region_id 可能逐区追加，保留原写入语义；
+        # “区域采用了哪版热力 / 是否仍基于旧结果”由分析快照的版本台账与交接单冻结。
         written = self._write_jsonl(output_file, [summary])
 
         # 更新区域维度记录

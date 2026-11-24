@@ -20,6 +20,10 @@ from app.services.dedup_merge import DedupMergeService
 from app.services.geo_snapshot import GeoSnapshotService
 from app.services.geo_backfill import GeoBackfillService
 from app.services.geo_export import GeoExportService
+from app.services.geo_handoff import GeoHandoffService
+from app.services.handoff import HandoffService
+from app.services.geo_handover import GeoHandoverService
+from app.services.handover import HandoverService
 
 SERVICES: dict[str, BaseModuleService] = {
     "geo_source": GeoSourceService(),
@@ -38,6 +42,10 @@ SERVICES: dict[str, BaseModuleService] = {
     "geo_quality": GeoQualityService(),
     "dedup_merge": DedupMergeService(),
     "geo_snapshot": GeoSnapshotService(),
+    "geo_handoff": GeoHandoffService(),
+    "handoff": HandoffService(),
+    "geo_handover": GeoHandoverService(),
+    "handover": HandoverService(),
     "geo_backfill": GeoBackfillService(),
     "geo_export": GeoExportService(),
 }

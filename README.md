@@ -77,5 +77,32 @@ npm run dev
 - 列表接口统一返回 `{ items, total, page, size }`，动作接口统一返回 `{ ok, message }`。
 - 状态流转只允许在 `app/services` 里改，路由层不做业务判断。
 
+## 分析快照：晚到定位热力更正的版本一致性
+
+晚到定位触发部分格热力重算时，同一“格时窗口”的多版结果（如 8 点旧版 / 9 点更正版）
+会在 `GeoSnapshotService` 的版本台账中**全部保留**，任何收数只显式采用一个版本并单列差额，
+绝不把两版相加报成 17 点：
+
+- `record_heat_version(scope, window, point_count, ...)`：登记一版热力（只追加版本，不做加法）。
+- `reconcile_heat_window(scope, window, uid=..., actual_count=...)`：按原格时窗口与该版本
+  自己的计算依据回算，产出“实际核对行”；通过才置「已核对」，否则保持「待续」。
+- `confirm_region_numbers(scope, window, count, adopted_uid=...)`：区域收数，显式记录采用哪版。
+- `confirm_snapshot(scope)`：持久记录每个分项选择（版本 uid / 数值 / 指纹）。
+- `issue_handoff(scope, level="市级")`：发出交接单并冻结 `basis`；单据落盘，刷新/新实例读取一致。
+  单内分开给出 `heatmap_independent_issue`（独立签发的热力）、
+  `region_pending_adjustment`（未调账区域 + 待调差数）、
+  `aligned_package.original_figures`（只接收已对齐数据一方的可核对原数）。
+- `start_region_correction(handoff_id)`：严格按交接单发出时冻结的 basis 启动更正
+  （甲窗 8→9、差 +1），不改动已发出的交接单。
+
+HTTP 薄层见 `app/routers/handoff.py`（前缀 `/api/geo_snapshot`，含 `handoffs`、`reconcile`、
+`region-confirm`、`corrections`、`scenario/city-handoff` 与通用 `invoke/{method_name}`）。
+验收场景可一键构造：`POST /api/geo_snapshot/scenario/city-handoff`
+（甲窗热力 9 已核对 / 区域仅确认 8 / 待调差 1，乙窗处理失败保持待续）。
+
+仓库已用 `/workspace/scripts/issue_city_handoff.py` 向默认数据目录发出一份固定单号的市级交接：
+`HO-CITY-20261124-ISSUED`，更正单 `RCORR-CITY-20261124-BASIS`，紧凑视图见
+`/workspace/data/city_handoff_view.json`。
+
 领域：数据工程
 子方向：数据分析与数据应用

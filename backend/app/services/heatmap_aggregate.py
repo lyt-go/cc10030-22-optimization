@@ -89,7 +89,9 @@ class HeatmapAggregateService(BaseModuleService):
                 peak_grid = info["geohash"]
 
         output_file = self._data_dir("heatmap") / f"{batch_key}_heatmap.jsonl"
-        written = self._write_jsonl(output_file, cells)
+        # 重算产出的是该批次当前完整热力数据集，必须覆盖旧文件；
+        # 同一格时窗口的历史版本由分析快照的版本台账单独保留，严禁在此追加后被当成两次结果相加。
+        written = self._overwrite_jsonl(output_file, cells)
 
         return {
             "batch_key": batch_key,

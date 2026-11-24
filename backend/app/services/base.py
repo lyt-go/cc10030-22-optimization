@@ -118,6 +118,37 @@ class BaseModuleService:
                 written += 1
         return written
 
+    def _overwrite_jsonl(self, filepath: Path, records: list[dict[str, Any]]) -> int:
+        """以整份数据集覆盖写JSONL（重算场景使用，避免同一窗口新旧结果被重复累加）。"""
+        _ensure_dir(filepath.parent)
+        tmp_path = filepath.with_name(filepath.name + ".tmp")
+        written = 0
+        with open(tmp_path, "w", encoding="utf-8") as f:
+            for rec in records:
+                f.write(json.dumps(rec, ensure_ascii=False, default=str) + "\n")
+                written += 1
+        os.replace(tmp_path, filepath)
+        return written
+
+    def _write_json_doc(self, filepath: Path, doc: dict[str, Any]) -> Path:
+        """原子写入单个JSON文档（台账/交接单等需要整体持久化的状态）。"""
+        _ensure_dir(filepath.parent)
+        tmp_path = filepath.with_name(filepath.name + ".tmp")
+        with open(tmp_path, "w", encoding="utf-8") as f:
+            json.dump(doc, f, ensure_ascii=False, indent=2, default=str)
+        os.replace(tmp_path, filepath)
+        return filepath
+
+    def _read_json_doc(self, filepath: Path, default: Any = None) -> Any:
+        """读取单个JSON文档；不存在或损坏时返回default。"""
+        if not filepath.exists():
+            return {} if default is None else default
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except (json.JSONDecodeError, OSError):
+            return {} if default is None else default
+
     def _read_jsonl(self, filepath: Path) -> list[dict[str, Any]]:
         """从JSONL文件读取全部记录并返回字典列表。"""
         if not filepath.exists():

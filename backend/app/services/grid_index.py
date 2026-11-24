@@ -68,7 +68,8 @@ class GridIndexService(BaseModuleService):
             })
 
         output_file = self._data_dir("grid_index") / f"{batch_key}_grid.jsonl"
-        written = self._write_jsonl(output_file, grids)
+        # 网格索引为整份重算数据集，覆盖写入，避免重跑后区域收数重复计数。
+        written = self._overwrite_jsonl(output_file, grids)
 
         for g in grids:
             entry, _ = self.create_entry({
